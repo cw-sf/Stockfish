@@ -59,33 +59,23 @@ using namespace Search;
 
 namespace {
 
- // network 0
-  int netbiases_0[1] = {133};
-  int netweights_0[32] = {-20, -10, -31, 11, -17, 29, 34, -18, 51, -20, -16, 16, 25, -25, 15, -7, 8, 18, 17, -12, -12, -15, -13, 15, 13, 56, 15, -25, 16, -14, 20, 15};
- // network 1
-  int netbiases_1[1] = {35};
-  int netweights_1[32] = {-25, -13, -33, 17, -36, 18, 17, -19, 17, -19, -16, 10, 23, -24, 11, 44, 22, 22, 19, -13, -17, -14, -11, 17, 22, 16, 37, -17, 26, -13, 19, 28};
- // network 2
-  int netbiases_2[1] = {339};
-  int netweights_2[32] = {-21, -8, -18, 18, -15, 15, 18, -19, 12, -12, -19, 14, 28, -19, 12, -33, 18, 20, 22, -15, -13, -13, -12, 25, 16, 19, 71, -17, 46, -62, 19, 24};
- // network 3
-  int netbiases_3[1] = {422};
-  int netweights_3[32] = {-27, -9, -37, 20, -16, 18, 12, -17, 16, -13, -9, 13, 52, -16, 20, -18, 11, 22, 26, -10, -14, -11, -19, 33, 19, 13, 26, -16, 74, -8, 22, 8};
- // network 4
-  int netbiases_4[1] = {239};
-  int netweights_4[32] = {-32, -7, -16, 15, -12, 9, 14, -17, 67, -13, -15, 8, 53, -15, 11, -17, 16, 18, 21, -12, -11, -10, -22, 16, 11, 11, 26, -16, 36, -5, 23, 5};
- // network 5
-  int netbiases_5[1] = {336};
-  int netweights_5[32] = {-47, -6, -20, 16, -13, 29, 14, -14, 52, -10, -9, 9, 46, -13, 12, -9, 9, 19, 22, -9, -11, -8, -19, 17, 12, 9, 11, -13, 46, -16, 26, 7};
- // network 6
-  int netbiases_6[1] = {200};
-  int netweights_6[32] = {-35, -6, -14, 16, -7, 9, 10, -15, 20, -10, -9, 9, 13, -13, 9, -13, 9, 17, 18, -8, -12, -7, -18, 16, 10, 12, 22, -13, 122, -18, 19, 6};
- // network 7
-  int netbiases_7[1] = {25};
-  int netweights_7[32] = {-37, -4, -11, 8, -11, 11, 5, -13, 15, -9, -8, 8, 13, -12, 6, -10, 6, 13, 13, -7, -10, -7, -27, 8, 5, 7, 33, -12, 7, -12, 15, 3};
-
-TUNE(netbiases_0, netweights_0, netbiases_1, netweights_1, netbiases_2, netweights_2, netbiases_3, netweights_3,
-     netbiases_4, netweights_4, netbiases_5, netweights_5, netbiases_6, netweights_6, netbiases_7, netweights_7);
+  int nbnw[264] = {133,
+-20, -10, -31, 11, -17, 29, 34, -18, 51, -20, -16, 16, 25, -25, 15, -7, 8, 18, 17, -12, -12, -15, -13, 15, 13, 56, 15, -25, 16, -14, 20, 15,
+35,
+-25, -13, -33, 17, -36, 18, 17, -19, 17, -19, -16, 10, 23, -24, 11, 44, 22, 22, 19, -13, -17, -14, -11, 17, 22, 16, 37, -17, 26, -13, 19, 28,
+339,
+-21, -8, -18, 18, -15, 15, 18, -19, 12, -12, -19, 14, 28, -19, 12, -33, 18, 20, 22, -15, -13, -13, -12, 25, 16, 19, 71, -17, 46, -62, 19, 24,
+422,
+-27, -9, -37, 20, -16, 18, 12, -17, 16, -13, -9, 13, 52, -16, 20, -18, 11, 22, 26, -10, -14, -11, -19, 33, 19, 13, 26, -16, 74, -8, 22, 8,
+239,
+-32, -7, -16, 15, -12, 9, 14, -17, 67, -13, -15, 8, 53, -15, 11, -17, 16, 18, 21, -12, -11, -10, -22, 16, 11, 11, 26, -16, 36, -5, 23, 5,
+336,
+-47, -6, -20, 16, -13, 29, 14, -14, 52, -10, -9, 9, 46, -13, 12, -9, 9, 19, 22, -9, -11, -8, -19, 17, 12, 9, 11, -13, 46, -16, 26, 7,
+200,
+-35, -6, -14, 16, -7, 9, 10, -15, 20, -10, -9, 9, 13, -13, 9, -13, 9, 17, 18, -8, -12, -7, -18, 16, 10, 12, 22, -13, 122, -18, 19, 6,
+25,
+-37, -4, -11, 8, -11, 11, 5, -13, 15, -9, -8, 8, 13, -12, 6, -10, 6, 13, 13, -7, -10, -7, -27, 8, 5, 7, 33, -12, 7, -12, 15, 3};
+TUNE(nbnw);
 
   // Different node types, used as a template parameter
   enum NodeType { NonPV, PV };
@@ -211,84 +201,39 @@ void MainThread::search() {
   }
 
 /*
+std::cout << "  int nbnw"<< "[" << 264 << "] = {";
 for (size_t j=0; j < 8; ++j)
   {
-     std::cout << " // network " << j << std::endl;
+    if (j>0)
+	{
+		std::cout << ", " << std::endl;
+	};
      size_t ndim=1;
-     std::cout << "  int netbiases_" << j << "[" << ndim << "] = {";
      for (size_t i=0; i < ndim; ++i)
      {
          std::cout << int(Stockfish::Eval::NNUE::network[j]->biases[i]);
          if (i < ndim - 1) std::cout << ", ";
      }
-     std::cout << "}; " << std::endl;
+     std::cout << ", " << std::endl;
      ndim=32;
-     std::cout << "  int netweights_" << j << "[" << ndim << "] = {";
      for (size_t i=0; i < ndim; ++i)
      {
          std::cout << int(Stockfish::Eval::NNUE::network[j]->weights[i]);
          if (i < ndim - 1) std::cout << ", ";
      }
-     std::cout << "}; " << std::endl;
   }
+std::cout << "}; " << std::endl;
 */
 
-// network 0
-     Stockfish::Eval::NNUE::network[0]->biases[0] = netbiases_0[0];
+for (size_t j=0; j < 8; ++j)
+{
+	Stockfish::Eval::NNUE::network[j]->biases[0] = nbnw[j*33];
 
-     for (size_t i=0; i < 32; ++i)
-     {
-        Stockfish::Eval::NNUE::network[0]->weights[i] = netweights_0[i];
-     }
-// network 1
-     Stockfish::Eval::NNUE::network[1]->biases[0] = netbiases_1[0];
-
-     for (size_t i=0; i < 32; ++i)
-     {
-        Stockfish::Eval::NNUE::network[1]->weights[i] = netweights_1[i];
-     }
-// network 2
-     Stockfish::Eval::NNUE::network[2]->biases[0] = netbiases_2[0];
-
-     for (size_t i=0; i < 32; ++i)
-     {
-        Stockfish::Eval::NNUE::network[2]->weights[i] = netweights_2[i];
-     }
-// network 3
-     Stockfish::Eval::NNUE::network[3]->biases[0] = netbiases_3[0];
-
-     for (size_t i=0; i < 32; ++i)
-     {
-        Stockfish::Eval::NNUE::network[3]->weights[i] = netweights_3[i];
-     }
-// network 4
-     Stockfish::Eval::NNUE::network[4]->biases[0] = netbiases_4[0];
-
-     for (size_t i=0; i < 32; ++i)
-     {
-        Stockfish::Eval::NNUE::network[4]->weights[i] = netweights_4[i];
-     }
-// network 5
-     Stockfish::Eval::NNUE::network[5]->biases[0] = netbiases_5[0];
-
-     for (size_t i=0; i < 32; ++i)
-     {
-        Stockfish::Eval::NNUE::network[5]->weights[i] = netweights_5[i];
-     }
-// network 6
-     Stockfish::Eval::NNUE::network[6]->biases[0] = netbiases_6[0];
-
-     for (size_t i=0; i < 32; ++i)
-     {
-        Stockfish::Eval::NNUE::network[6]->weights[i] = netweights_6[i];
-     }
-// network 7
-     Stockfish::Eval::NNUE::network[7]->biases[0] = netbiases_7[0];
-
-     for (size_t i=0; i < 32; ++i)
-     {
-        Stockfish::Eval::NNUE::network[7]->weights[i] = netweights_7[i];
-     }
+    for (size_t i=0; i < 32; ++i)
+    {
+        Stockfish::Eval::NNUE::network[j]->weights[i] = nbnw[(i+1)+(j*33)];
+    }
+};
 
   Color us = rootPos.side_to_move();
   Time.init(Limits, us, rootPos.game_ply());
