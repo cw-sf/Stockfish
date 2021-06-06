@@ -75,7 +75,9 @@ namespace {
 -35, -6, -14, 16, -7, 9, 10, -15, 20, -10, -9, 9, 13, -13, 9, -13, 9, 17, 18, -8, -12, -7, -18, 16, 10, 12, 22, -13, 122, -18, 19, 6,
 25,
 -37, -4, -11, 8, -11, 11, 5, -13, 15, -9, -8, 8, 13, -12, 6, -10, 6, 13, 13, -7, -10, -7, -27, 8, 5, 7, 33, -12, 7, -12, 15, 3};
-TUNE(nbnw);
+
+auto myfunc127 = [](int m){ return std::pair<int, int>((m - 80),(m + 80));};
+  TUNE(SetRange(myfunc127), nbnw);
 
   // Different node types, used as a template parameter
   enum NodeType { NonPV, PV, Root };
