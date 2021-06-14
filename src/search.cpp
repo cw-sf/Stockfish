@@ -58,7 +58,7 @@ using Eval::evaluate;
 using namespace Search;
 
 namespace {
-
+/*
   int nbnw[264] = {133,
 -20, -10, -31, 11, -17, 29, 34, -18, 51, -20, -16, 16, 25, -25, 15, -7, 8, 18, 17, -12, -12, -15, -13, 15, 13, 56, 15, -25, 16, -14, 20, 15,
 35,
@@ -78,7 +78,7 @@ namespace {
 
 auto myfunc127 = [](int m){ return std::pair<int, int>((m - 80),(m + 80));};
   TUNE(SetRange(myfunc127), nbnw);
-
+*/
   // Different node types, used as a template parameter
   enum NodeType { NonPV, PV, Root };
 
@@ -227,6 +227,31 @@ for (size_t j=0; j < 8; ++j)
 std::cout << "}; " << std::endl;
 */
 
+
+// Output by network
+for (size_t j=0; j < 8; ++j)
+  {
+     std::cout << " // network " << j << std::endl;
+     size_t ndim=1;
+     std::cout << "  int netbiases_" << j << "[" << ndim << "] = {";
+     for (size_t i=0; i < ndim; ++i)
+     {
+         std::cout << int(Stockfish::Eval::NNUE::network[j]->biases[i]);
+         if (i < ndim - 1) std::cout << ", ";
+     }
+     std::cout << "}; " << std::endl;
+     ndim=32;
+     std::cout << "  int netweights_" << j << "[" << ndim << "] = {";
+     for (size_t i=0; i < ndim; ++i)
+     {
+         std::cout << int(Stockfish::Eval::NNUE::network[j]->weights[i]);
+         if (i < ndim - 1) std::cout << ", ";
+     }
+     std::cout << "}; " << std::endl;
+  }
+
+
+/*
 for (size_t j=0; j < 8; ++j)
 {
 	Stockfish::Eval::NNUE::network[j]->biases[0] = nbnw[j*33];
@@ -236,7 +261,7 @@ for (size_t j=0; j < 8; ++j)
         Stockfish::Eval::NNUE::network[j]->weights[i] = nbnw[(i+1)+(j*33)];
     }
 };
-
+*/
   Color us = rootPos.side_to_move();
   Time.init(Limits, us, rootPos.game_ply());
   TT.new_search();
