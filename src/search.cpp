@@ -59,9 +59,9 @@ using namespace Search;
 
 namespace {
 
-  int nb[8] = {31, 108, 141, 8, 1, 71, 115, 60};
+  int nb[8] = {346, 802, 701, 236, 494, 396, 230, 200};
 
-  TUNE(SetRange(0,400), nb);
+  TUNE(nb);
 
   // Different node types, used as a template parameter
   enum NodeType { NonPV, PV, Root };
@@ -187,6 +187,19 @@ void MainThread::search() {
   }
 
 /*
+std::cout << "  int nbnw"<< "[" << 8 << "] = {";
+for (size_t j=0; j < 8; ++j)
+  {
+     size_t ndim=1;
+     for (size_t i=0; i < ndim; ++i)
+     {
+         std::cout << int(Stockfish::Eval::NNUE::network[j]->biases[i]);
+         if (i < ndim - 1) std::cout << ", ";
+     }
+     std::cout << ", " << std::endl;
+  }
+*/
+/*
 // std::cout << "  int nbnw"<< "[" << 264 << "] = {";
 std::cout << "  int nbnw"<< "[" << 8 << "] = {";
 for (size_t j=0; j < 8; ++j)
@@ -212,7 +225,7 @@ for (size_t j=0; j < 8; ++j)
 
   }
 std::cout << "}; " << std::endl;
-
+*/
 
 /*
 // Output by network
@@ -238,18 +251,24 @@ for (size_t j=0; j < 8; ++j)
   }
 */
 
-
+/*
 for (size_t j=0; j < 8; ++j)
 {
 	Stockfish::Eval::NNUE::network[j]->biases[0] = nb[j];
-/*
+
 	Stockfish::Eval::NNUE::network[j]->biases[0] = nbnw[j*33];
 
     for (size_t i=0; i < 32; ++i)
     {
         Stockfish::Eval::NNUE::network[j]->weights[i] = nbnw[(i+1)+(j*33)];
     }
+
+};
 */
+
+for (size_t j=0; j < 8; ++j)
+{
+	Stockfish::Eval::NNUE::network[j]->biases[0] = nb[j];
 };
 
   Color us = rootPos.side_to_move();
