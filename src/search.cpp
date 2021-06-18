@@ -59,7 +59,7 @@ using namespace Search;
 
 namespace {
 
-  int nb[8] = {346, 802, 701, 236, 494, 396, 230, 200};
+  int nb[8] = {430, 191, 205, 33, 129, -15, 41, -71};
 
   TUNE(nb);
 
@@ -187,17 +187,13 @@ void MainThread::search() {
   }
 
 /*
-std::cout << "  int nbnw"<< "[" << 8 << "] = {";
+std::cout << "  int nb"<< "[" << 8 << "] = {";
 for (size_t j=0; j < 8; ++j)
   {
-     size_t ndim=1;
-     for (size_t i=0; i < ndim; ++i)
-     {
-         std::cout << int(Stockfish::Eval::NNUE::network[j]->biases[i]);
-         if (i < ndim - 1) std::cout << ", ";
-     }
-     std::cout << ", " << std::endl;
+        std::cout << int(Stockfish::Eval::NNUE::network[j]->biases[0]);
+         if (j < 7) std::cout << ", ";
   }
+std::cout << "}; " << std::endl;
 */
 /*
 // std::cout << "  int nbnw"<< "[" << 264 << "] = {";
