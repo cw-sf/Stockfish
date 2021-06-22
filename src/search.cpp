@@ -59,12 +59,8 @@ using namespace Search;
 
 namespace {
 
- // network 3
-  int netbiases_3[1] = {47};
-TUNE(SetRange(-800,800), netbiases_3);
-  int netweights_3[32] = {11, -15, 45, 13, 12, 5, 46, -27, -27, 9, 19, 40, -49, -14, -15, 15, 20, -7, -17, 15, -20, -56, 9, 86, 13, 23, 18, -21, -19, -14, -14, 16};
- auto myfunc127 = [](int m){ return std::pair<int, int>(std::max(-127, m - 80),std::min(127,m + 80));};
-  TUNE(SetRange(myfunc127), netweights_3);
+int nb[8] = {278, 303, 280, 47, 47, -20, 47, -60};
+TUNE(nb);
   // Different node types, used as a template parameter
   enum NodeType { NonPV, PV, Root };
 
@@ -263,20 +259,20 @@ for (size_t j=0; j < 8; ++j)
 
 };
 */
-/*
+
 for (size_t j=0; j < 8; ++j)
 {
 	Stockfish::Eval::NNUE::network[j]->biases[0] = nb[j];
 };
-*/
 
+/*
 	Stockfish::Eval::NNUE::network[3]->biases[0] = netbiases_3[0];
 
     for (size_t i=0; i < 32; ++i)
     {
         Stockfish::Eval::NNUE::network[3]->weights[i] = netweights_3[i];
     }
-
+*/
   Color us = rootPos.side_to_move();
   Time.init(Limits, us, rootPos.game_ply());
   TT.new_search();
