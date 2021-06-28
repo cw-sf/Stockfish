@@ -167,7 +167,7 @@ int nbnw[264] = {288,	21,	-19,	14,	40,	50,	25,	26,	-12,	-13,	75,	20,	32,	-53,	-2
 void Search::init() {
 
   for (int i = 1; i < MAX_MOVES; ++i)
-      Reductions[i] = int(21.3 * std::log(i + 0.25 * std::log(i)));
+      Reductions[i] = int(21.9 * std::log(i));
 }
 
 
