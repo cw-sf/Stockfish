@@ -182,7 +182,8 @@ namespace Stockfish::Eval::NNUE::Layers {
       return output;
     }
 
-   private:
+   public:
+    using PrevLayer = PreviousLayer;
     PreviousLayer previousLayer;
   };
 
