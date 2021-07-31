@@ -1025,7 +1025,7 @@ namespace {
         && !ttMove)
         depth -= 2;
 
-moves_loop: // When in check, search starts from here
+moves_loop: // When in check, search starts here
 
     ttCapture = ttMove && pos.capture_or_promotion(ttMove);
 
@@ -1135,8 +1135,8 @@ moves_loop: // When in check, search starts from here
           {
               // Continuation history based pruning (~20 Elo)
               if (   lmrDepth < 5
-                  && (*contHist[0])[movedPiece][to_sq(move)] < CounterMovePruneThreshold
-                  && (*contHist[1])[movedPiece][to_sq(move)] < CounterMovePruneThreshold)
+                  && (*contHist[0])[movedPiece][to_sq(move)] < (depth == 1 ? 0 : -stat_bonus(depth-1))
+                  && (*contHist[1])[movedPiece][to_sq(move)] < (depth == 1 ? 0 : -stat_bonus(depth-1)))
                   continue;
 
               // Futility pruning: parent node (~5 Elo)
@@ -1277,21 +1277,18 @@ moves_loop: // When in check, search starts from here
           if (cutNode && move != ss->killers[0])
               r += 2;
 
-          if (!captureOrPromotion)
-          {
-              // Increase reduction if ttMove is a capture (~3 Elo)
-              if (ttCapture)
-                  r++;
+          // Increase reduction if ttMove is a capture (~3 Elo)
+          if (ttCapture)
+              r++;
 
-              ss->statScore =  thisThread->mainHistory[us][from_to(move)]
-                             + (*contHist[0])[movedPiece][to_sq(move)]
-                             + (*contHist[1])[movedPiece][to_sq(move)]
-                             + (*contHist[3])[movedPiece][to_sq(move)]
-                             - 4923;
+          ss->statScore =  thisThread->mainHistory[us][from_to(move)]
+                         + (*contHist[0])[movedPiece][to_sq(move)]
+                         + (*contHist[1])[movedPiece][to_sq(move)]
+                         + (*contHist[3])[movedPiece][to_sq(move)]
+                         - 4923;
 
-              // Decrease/increase reduction for moves with a good/bad history (~30 Elo)
-              r -= ss->statScore / 14721;
-          }
+          // Decrease/increase reduction for moves with a good/bad history (~30 Elo)
+          r -= ss->statScore / 14721;
 
           // In general we want to cap the LMR depth search at newDepth. But if
           // reductions are really negative and movecount is low, we allow this move
