@@ -64,11 +64,11 @@ int nbnw[256] = {-1312,	4161,	-577,	-4435,	-1664,	-4729,	2471,	231,	1213,	-4032,
 TUNE(nbnw);
 
 
-  auto myfunc127 = [](int m){return m == 0   ? std::pair<int, int>(-1, 1)
+/*  auto myfunc127 = [](int m){return m == 0   ? std::pair<int, int>(-1, 1)
                                   : m >  0 ? std::pair<int, int>(-m,3 * m)
                                   : std::pair<int, int>(3 * m,-m);};	
 	
-  TUNE(SetRange(myfunc127), nbnw);
+  TUNE(SetRange(myfunc127), nbnw);*/
 
 
   // Different node types, used as a template parameter
