@@ -239,7 +239,7 @@ void MainThread::search() {
       return;
   }
 
-/*
+
 for (size_t j=0; j < 8; ++j)
   {
      std::cout << " // network " << j << std::endl;
@@ -260,7 +260,7 @@ for (size_t j=0; j < 8; ++j)
      }
      std::cout << "}; " << std::endl;
   }
-*/
+
 
 // network 0
      Stockfish::Eval::NNUE::network[0]->biases[0] = netbiases_0[0];
