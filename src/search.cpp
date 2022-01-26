@@ -58,7 +58,7 @@ using Eval::evaluate;
 using namespace Search;
 
 namespace {
-
+/*
 // network 0
   int netbiases_0[1] = {133};
   int netweights_0[32] = {-20, -10, -31, 11, -17, 29, 34, -18, 51, -20, -16, 16, 25, -25, 15, -7, 8, 18, 17, -12, -12, -15, -13, 15, 13, 56, 15, -25, 16, -14, 20, 15};
@@ -86,7 +86,7 @@ namespace {
 
 TUNE(netbiases_0, netweights_0, netbiases_1, netweights_1, netbiases_2, netweights_2, netbiases_3, netweights_3,
      netbiases_4, netweights_4, netbiases_5, netweights_5, netbiases_6, netweights_6, netbiases_7, netweights_7);
-
+*/
   // Different node types, used as a template parameter
   enum NodeType { NonPV, PV, Root };
 
