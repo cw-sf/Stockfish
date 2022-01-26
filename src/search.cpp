@@ -261,7 +261,7 @@ for (size_t j=0; j < 8; ++j)
      std::cout << "}; " << std::endl;
   }
 
-
+/*
 // network 0
      Stockfish::Eval::NNUE::network[0]->biases[0] = netbiases_0[0];
 
@@ -318,7 +318,7 @@ for (size_t j=0; j < 8; ++j)
      {
         Stockfish::Eval::NNUE::network[7]->weights[i] = netweights_7[i];
      }
-
+*/
   Color us = rootPos.side_to_move();
   Time.init(Limits, us, rootPos.game_ply());
   TT.new_search();
