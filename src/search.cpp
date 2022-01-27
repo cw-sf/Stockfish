@@ -84,9 +84,21 @@ namespace {
   int netbiases_7[1] = {197};
   int netweights_7[32] = {21, -86, -32, -7, -127, -16, 32, 126, 26, 17, -20, 6, -17, -14, 58, 127, 16, 25, -16, -27, 68, -17, 31, 30, 14, -7, 12, -56, -27, -18, 11, 11};
 
-TUNE(netbiases_0, netweights_0, netbiases_1, netweights_1, netbiases_2, netweights_2, netbiases_3, netweights_3,
-     netbiases_4, netweights_4, netbiases_5, netweights_5, netbiases_6, netweights_6, netbiases_7, netweights_7);
+  /*auto myfunc127 = [](int m){return m == 0   ? std::pair<int, int>(-1, 1)
+                                  : m < 10 && m > -10 ? std::pair<int, int>(m-10, m+10)
+                                  : m >  200 ? std::pair<int, int>(0,2 * m)
+                                  : m < -200 ? std::pair<int, int>(2 * m,0)
+                                  : m <  0   ? std::pair<int, int>(std::max(-127, 2 * m),0)
+                                  : std::pair<int, int>(0,std::min(127, 2 * m));};
 
+  TUNE(SetRange(myfunc127), nbnw);*/
+  
+/*TUNE(netbiases_0, netweights_0, netbiases_1, netweights_1, netbiases_2, netweights_2, netbiases_3, netweights_3,
+     netbiases_4, netweights_4, netbiases_5, netweights_5, netbiases_6, netweights_6, netbiases_7, netweights_7);
+*/
+TUNE(SetRange(-128, 127), netweights_0, netweights_1, netweights_2, netweights_3, netweights_4, netweights_5, netweights_6, netweights_7);
+  
+  
   // Different node types, used as a template parameter
   enum NodeType { NonPV, PV, Root };
 
