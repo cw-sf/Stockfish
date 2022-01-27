@@ -266,6 +266,7 @@ for (size_t j=0; j < 8; ++j)
 
 //cw assign weights and biases to output layer
 
+/*
 // network 0
   int netbiases_0[1] = {133};
   int netweights_0[32] = {-20, -10, -31, 11, -17, 29, 34, -18, 51, -20, -16, 16, 25, -25, 15, -7, 8, 18, 17, -12, -12, -15, -13, 15, 13, 56, 15, -25, 16, -14, 20, 15};
@@ -290,7 +291,7 @@ for (size_t j=0; j < 8; ++j)
  // network 7
   int netbiases_7[1] = {25};
   int netweights_7[32] = {-37, -4, -11, 8, -11, 11, 5, -13, 15, -9, -8, 8, 13, -12, 6, -10, 6, 13, 13, -7, -10, -7, -27, 8, 5, 7, 33, -12, 7, -12, 15, 3};
-
+*/
 // network 0
      Stockfish::Eval::NNUE::network[0]->biases[0] = netbiases_0[0];
 
